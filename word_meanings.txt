@@ -1,6 +1,0 @@
-prioritized: To arrange or list a group of things in order of priority or importance.
-performance: The act of performing; carrying into execution or action; execution; achievement; accomplishment; representation by action.
-interpretation: An act of interpreting or explaining what is obscure; a translation; a version; a construction.
-forecasting: To estimate how something will be in the future.
-computational: Of or relating to computation.
-problematic: (chiefly in the plural) A problem or difficulty in a particular field of study.
