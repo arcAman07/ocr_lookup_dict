@@ -33,20 +33,15 @@ def extract_highlighted_words(image_path):
   # Return the highlighted words
   return highlighted_words
 
-# Word Meanings Retrieval => Just for searching up!
+# Get Word Meanings => Just for searching up!
 def get_word_meanings(word):
-  url = "https://api.dictionaryapi.dev/api/v2/entries/en_US/"
-  response = requests.get(url + word)
-  if response.status_code != 200:
-      raise ValueError('Error retrieving word meanings')
-  data = response.json()[0]
-  meanings = data['meanings']
-  word_meanings = {}
-  for meaning in meanings:
-      definition = meaning['definitions'][0]['definition']
-      example = meaning['definitions'][0]['example']
-      word_meanings[meaning['partOfSpeech']] = {'definition': definition, 'example': example}
-  return word_meanings
+  url = f'https://api.dictionaryapi.dev/api/v2/entries/en/{word}'
+  response = requests.get(url)
+  if response.status_code == 200:
+      meaning = response.json()[0]['meanings'][0]['definitions'][0]['definition']
+      return meaning
+  else:
+      return 'Error - Word not found in dictionary'
 
 # Deals with the entire process of looking up the meanings of the words and writing them to a file
 def write_word_meanings(words, filename):
