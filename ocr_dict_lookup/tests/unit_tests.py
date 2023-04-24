@@ -1,19 +1,18 @@
 import time
 import os
 from PIL import Image
-from ocr import extract_text_from_image
-from word_meaning import extract_highlighted_words, get_word_meanings, write_word_meanings
 import unittest
-import os
-from PIL import Image
-from ocr import extract_text_from_image
-from word_meaning import extract_highlighted_words, get_word_meanings, write_word_meanings
+from ocr_dict_lookup import extract_highlighted_words, get_word_meanings, write_word_meanings
 
+image_path_1 = "../images/IMG_0023.PNG"
+image_path_2 = "../images/IMG_0024.PNG"
+image_path_3 = "../images/IMG_0025.PNG"
 
 # Unit tests for extract_highlighted_words
 def test_extract_highlighted_words():
-    assert extract_highlighted_words('test_image1.jpg') == ['word1', 'word2', 'word3']
-    assert extract_highlighted_words('test_image2.jpg') == ['word4', 'word5']
+    assert extract_highlighted_words(image_path_1) == ['prioritized', 'performance', 'interpretation', 'forecasting', 'computational', 'problematic']
+    assert extract_highlighted_words(image_path_2) == ['word4', 'word5']
+    assert extract_highlighted_words(image_path_3) == ['word6', 'word7', 'word8']
 
 # Unit tests for get_word_meanings
 def test_get_word_meanings():
@@ -90,3 +89,6 @@ def test_performance(image_path, highlighted_words):
     write_word_meanings(highlighted_words, test_output_file)
     end_time = time.time()
     print(f"Write to file processing time: {end_time - start_time:.4f} seconds")
+
+words = extract_highlighted_words(image_path_1)
+print(words)
