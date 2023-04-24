@@ -11,8 +11,7 @@ image_path_3 = "../images/IMG_0025.PNG"
 # Unit tests for extract_highlighted_words
 def test_extract_highlighted_words():
     assert extract_highlighted_words(image_path_1) == ['prioritized', 'performance', 'interpretation', 'forecasting', 'computational', 'problematic']
-    assert extract_highlighted_words(image_path_2) == ['word4', 'word5']
-    assert extract_highlighted_words(image_path_3) == ['word6', 'word7', 'word8']
+    assert extract_highlighted_words(image_path_3) == ['distribution', 'improvement', 'precision', 'distribution', 'modification', 'intuition', 'BatchNorm']
 
 # Unit tests for get_word_meanings
 def test_get_word_meanings():
@@ -33,33 +32,6 @@ def test_write_word_meanings():
                 writer.writerow({'Word': word, 'Part of Speech': part_of_speech,
                                   'Definition': meaning['definition'], 'Example': meaning['example']})
 
-
-class TestOCRAndWordMeaning(unittest.TestCase):
-
-    def setUp(self):
-        self.test_image_path = os.path.join(os.path.dirname(__file__), 'test_image.png')
-        self.test_output_file = os.path.join(os.path.dirname(__file__), 'test_output.csv')
-        self.highlighted_words = ['python', 'code', 'programming']
-    
-    def tearDown(self):
-        if os.path.exists(self.test_output_file):
-            os.remove(self.test_output_file)
-
-    def test_integration(self):
-        # Test OCR and word meaning extraction functionality
-        image = Image.open(self.test_image_path)
-        ocr_text = extract_text_from_image(image)
-        highlighted_words = extract_highlighted_words(ocr_text, self.highlighted_words)
-        write_word_meanings(highlighted_words, self.test_output_file)
-        self.assertTrue(os.path.exists(self.test_output_file))
-        
-        # Verify the results
-        with open(self.test_output_file) as f:
-            lines = f.readlines()
-            self.assertEqual(len(lines), 4)
-            self.assertIn('python', lines[1])
-            self.assertIn('code', lines[2])
-            self.assertIn('programming', lines[3])
 
 def test_performance(image_path, highlighted_words):
     image = Image.open(image_path)
