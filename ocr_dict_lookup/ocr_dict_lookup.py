@@ -3,9 +3,6 @@ import numpy as np
 import pytesseract
 import re
 import requests
-import csv
-
-image_path = "/Users/deepaksharma/Documents/Languages/Python/ocr_dict_lookup/IMG_0023.PNG"
 
 # Extract Highlighted Words
 def extract_highlighted_words(image_filename):
@@ -66,8 +63,3 @@ def write_word_meanings(words, filename):
             else:
                 file.write(f'{word}: Error - Word not found in dictionary\n')
 
-
-# Print the highlighted words
-highlighted_words = extract_highlighted_words(image_path)
-write_word_meanings(highlighted_words, 'word_meanings.txt')
-print(highlighted_words)

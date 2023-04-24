@@ -12,7 +12,6 @@ setup(
         'opencv-python',
         'pytesseract',
         'requests',
-        'csv',
         're'
     ]
 )
